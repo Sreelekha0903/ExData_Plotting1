@@ -15,6 +15,8 @@ rawData <- subset(rawData, (Date >= as.Date('2007/02/01') & (Date <= as.Date('20
 ##Creating a new column merging date and time column
 DataForPlot2$DateTimeCol <- paste(DataForPlot2$Date,DataForPlot2$Time, sep = " ")
 
+##Opening graphic device
+dev.new(width = 480,height= 480, unit = "px")
 
 ##Plotting the fourth plot
 par(mfrow = c(2,2))
@@ -32,3 +34,6 @@ legend("topright", legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_
 
 ##Fourth sub plot
 plot(as.POSIXct(DataForPlot2$DateTimeCol), DataForPlot2$Global_reactive_power, type = "l", ylab = "Global_reactive_power", xlab = "datetime")
+
+##closing the connetion
+dev.off()
